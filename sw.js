@@ -1,0 +1,13 @@
+self.addEventListener("install", e => {
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", e => {
+  console.log("SW aktif");
+});
+
+self.addEventListener("fetch", e => {
+  e.respondWith(fetch(e.request).catch(() => {
+    return new Response("Offline mode aktif");
+  }));
+});
